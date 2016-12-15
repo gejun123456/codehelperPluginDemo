@@ -20,4 +20,6 @@ build/
 .idea/
 .gradle/
 
+logs/
+
 

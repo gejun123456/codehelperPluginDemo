@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by bruce.ge on 2016/12/15.
  */
-public class User {
+public class MyUser {
     private Integer id;
 
     private String cookie;

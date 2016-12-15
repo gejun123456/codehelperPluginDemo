@@ -16,7 +16,7 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.6
 
 repositories {
     mavenCentral()
@@ -31,10 +31,21 @@ dependencies {
     // tag::jetty[]
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.2.RELEASE'
 
-    compile group: 'com.ruijc', name: 'spring-boot-starter-mybatis', version: '2.0.0'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.40'
+
+    compile group: 'com.alibaba', name: 'druid', version: '1.0.27'
+
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.1.1'
+
+    compile group: 'org.mybatis', name: 'mybatis', version: '3.4.1'
+
+
 
     // end::jetty[]
     // tag::actuator[]
     // end::actuator[]
     testCompile("junit:junit")
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.4.2.RELEASE'
+
 }
