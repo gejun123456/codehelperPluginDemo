@@ -1,4 +1,4 @@
--- auto Generated on 2016-12-15 20:08:06 
+-- auto Generated on 2016-12-15 22:34:58 
 -- DROP TABLE IF EXISTS `my_user`; 
 CREATE TABLE `my_user`(
     `id` INTEGER(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'id',
