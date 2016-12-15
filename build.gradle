@@ -1,0 +1,40 @@
+group 'com.codehelper'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+dependencies {
+    // tag::jetty[]
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.4.2.RELEASE'
+
+    compile group: 'com.ruijc', name: 'spring-boot-starter-mybatis', version: '2.0.0'
+
+    // end::jetty[]
+    // tag::actuator[]
+    // end::actuator[]
+    testCompile("junit:junit")
+}
