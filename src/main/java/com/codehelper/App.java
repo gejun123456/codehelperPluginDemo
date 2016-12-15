@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
 
@@ -15,14 +16,14 @@ import javax.sql.DataSource;
 /**
  * Created by bruce.ge on 2016/10/23.
  */
-@Controller
+@RestController
 @EnableAutoConfiguration
 @Configuration
 @ComponentScan
 public class App {
     @RequestMapping("/")
     String home() {
-        return "hello";
+        return "hello world";
     }
 
     public static void main(String[] args) {
