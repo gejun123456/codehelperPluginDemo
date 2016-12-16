@@ -7,7 +7,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by bruce.ge on 2016/12/15.
@@ -35,11 +37,82 @@ public class MyUserDaoTest extends BaseTest {
         }
     }
 
+    @Test
+    public void testFind() {
+        System.out.println("findByUserName");
+        List<MyUser> bruce0 =
+                myUserDao.findByUserName("bruce0");
+        printToJson(bruce0);
+
+
+        System.out.println("findFirstByUserName");
+        MyUser bruce01 = myUserDao.findFirstByUserName("bruce0");
+        printToJson(bruce01);
+
+        System.out.println("findUserNameAndPassWordByIdBetween");
+        List<MyUser> userNameAndPasswordByIdBetween = myUserDao.findUserNameAndPasswordByIdBetween(1, 3);
+        printToJson(userNameAndPasswordByIdBetween);
+
+        System.out.println("findByIdGreaterThan");
+        List<MyUser> byIdGreaterThan = myUserDao.findByIdGreaterThan(9);
+        printToJson(byIdGreaterThan);
+
+        System.out.println("findByIdLessThan");
+        List<MyUser> byIdLessThan = myUserDao.findByIdLessThan(2);
+        printToJson(byIdLessThan);
+
+        System.out.println("findDistinctUserNameIn");
+        List<Integer> ids = new ArrayList<Integer>();
+        ids.add(1);
+        ids.add(2);
+        List<String> distinctUserNameByIdIn = myUserDao.findDistinctUserNameByIdIn(ids);
+        printToJson(distinctUserNameByIdIn);
+
+        System.out.println("findByAgeGreaterThanAndIdLessThan");
+        List<MyUser> byAgeGreaterThanAndIdLessThan = myUserDao.findByAgeGreaterThanAndIdLessThan(3, 6);
+        printToJson(byAgeGreaterThanAndIdLessThan);
+
+        System.out.println("findByAgeOrderByUserNameDesc");
+        List<MyUser> byAgeOrderByUserNameDesc = myUserDao.findByAgeOrderByUserNameDesc(3);
+        printToJson(byAgeOrderByUserNameDesc);
+
+    }
+
     public void testInsertList() throws Exception {
 
     }
 
+    @Test
     public void testUpdate() throws Exception {
+        System.out.println("updateUserNameById");
+        int aaaa = myUserDao.updateUserNameById("aaaa", 1);
+        System.out.println(aaaa);
 
+        System.out.println("updateUserNameAndPasswordByIdBetween");
+        int i = myUserDao.updateUserNameAndPasswordByIdBetween("username", "password", 7, 8);
+        System.out.println(i);
+    }
+
+    @Test
+    public void testDelete(){
+        System.out.println("deleteById");
+        int i = myUserDao.deleteById(1);
+        System.out.println(i);
+
+        System.out.println("deleteByIdBetween");
+        int i1 = myUserDao.deleteByIdBetween(1, 3);
+        System.out.println(i1);
+    }
+
+
+    @Test
+    public void testCount(){
+        System.out.println("countByIdBetween");
+        Integer integer = myUserDao.countByIdBetween(1, 6);
+        System.out.println(integer);
+
+        System.out.println("countDistinctUserNamesByAgeLessThan");
+        Integer i = myUserDao.countDistinctUserNameByAgeLessThan(8);
+        System.out.println(i);
     }
 }
