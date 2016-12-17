@@ -3,6 +3,7 @@ package com.codehelper.mapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +40,8 @@ public interface MyUserDao {
 
     List<MyUser> findByUserName(@Param("userName") String userName);
 
+    List<MyUser> findByIdInAndUserNameIn(@Param("idList")List<Integer> idList,@Param("userNameList")List<String> userNameList);
+
 
     MyUser findFirstByUserName(@Param("userName") String userName);
 
@@ -63,4 +66,12 @@ public interface MyUserDao {
 
 
     int deleteByIdBetween(@Param("minId")Integer minId,@Param("maxId")Integer maxId);
+
+
+    List<MyUser> findByRemainingAmountGreaterThan(@Param("minRemainingAmount")BigDecimal minRemainingAmount);
+
+
+    MyUser findFirstByIdGreaterThan(@Param("minId")Integer minId);
+
+    List<MyUser> findFirst100ByIdGreaterThan(@Param("minId")Integer minId);
 }

@@ -10,5 +10,6 @@ CREATE TABLE `my_user`(
     `remaining_amount` DECIMAL(14,4) NOT NULL DEFAULT 0 COMMENT 'remainingAmount',
     `add_time` DATETIME NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT 'addTime',
     `serial_id` BIGINT NOT NULL DEFAULT -1 COMMENT 'serialId',
+    `global_id` BIGINT NOT NULL DEFAULT -1 COMMENT 'globalId',
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '`my_user`';

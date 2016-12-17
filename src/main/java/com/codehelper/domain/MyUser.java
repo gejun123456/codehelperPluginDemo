@@ -25,6 +25,16 @@ public class MyUser {
 
     private Long serialId;
 
+    private Long globalId;
+
+    public Long getGlobalId() {
+        return globalId;
+    }
+
+    public void setGlobalId(Long globalId) {
+        this.globalId = globalId;
+    }
+
     public Integer getId() {
         return id;
     }

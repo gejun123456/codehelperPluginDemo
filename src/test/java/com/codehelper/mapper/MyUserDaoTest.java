@@ -4,6 +4,7 @@ import base.BaseTest;
 import com.codehelper.domain.MyUser;
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -63,8 +64,9 @@ public class MyUserDaoTest extends BaseTest {
 
         System.out.println("findDistinctUserNameIn");
         List<Integer> ids = new ArrayList<Integer>();
-        ids.add(1);
-        ids.add(2);
+        ids.add(6);
+        ids.add(7);
+        ids.add(8);
         List<String> distinctUserNameByIdIn = myUserDao.findDistinctUserNameByIdIn(ids);
         printToJson(distinctUserNameByIdIn);
 
@@ -75,6 +77,18 @@ public class MyUserDaoTest extends BaseTest {
         System.out.println("findByAgeOrderByUserNameDesc");
         List<MyUser> byAgeOrderByUserNameDesc = myUserDao.findByAgeOrderByUserNameDesc(3);
         printToJson(byAgeOrderByUserNameDesc);
+
+
+        System.out.println("findByIdINAndUserNameIN");
+        List<Integer> idss = new ArrayList<Integer>();
+        idss.add(7);
+        idss.add(8);
+        idss.add(9);
+        idss.add(10);
+        List<String> usernames = new ArrayList<String>();
+        usernames.add("username");
+        List<MyUser> byIdInAndUserNameIn = myUserDao.findByIdInAndUserNameIn(idss, usernames);
+        printToJson(byIdInAndUserNameIn);
 
     }
 
@@ -94,7 +108,7 @@ public class MyUserDaoTest extends BaseTest {
     }
 
     @Test
-    public void testDelete(){
+    public void testDelete() {
         System.out.println("deleteById");
         int i = myUserDao.deleteById(1);
         System.out.println(i);
@@ -106,7 +120,7 @@ public class MyUserDaoTest extends BaseTest {
 
 
     @Test
-    public void testCount(){
+    public void testCount() {
         System.out.println("countByIdBetween");
         Integer integer = myUserDao.countByIdBetween(1, 6);
         System.out.println(integer);
