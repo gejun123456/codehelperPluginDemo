@@ -1,0 +1,12 @@
+-- auto Generated on 2017-02-03 10:40:57 
+-- DROP TABLE IF EXISTS `article`; 
+CREATE TABLE `article`(
+    `id` INT (11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+    `content` VARCHAR (50) NOT NULL DEFAULT '' COMMENT 'content',
+    `length` BIGINT (15) NOT NULL DEFAULT -1 COMMENT 'length',
+    `create_time` DATETIME NOT NULL DEFAULT '1000-01-01 00:00:00' COMMENT 'createTime',
+    `update_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'updateTime',
+    `has_more` TINYINT (4) NOT NULL DEFAULT 0 COMMENT 'hasMore',
+    `priority` DECIMAL (13,4) NOT NULL DEFAULT -1 COMMENT 'priority',
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '`article`';

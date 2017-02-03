@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.codehelper.mapper.ArticleDao">
+
+<!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.codehelper.domain.Article">
+        <result column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="length" property="length"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="has_more" property="hasMore"/>
+        <result column="priority" property="priority"/>
+    </resultMap>
+
+<!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `content`,
+        `length`,
+        `create_time`,
+        `update_time`,
+        `has_more`,
+        `priority`
+    </sql>
+
+<!--auto generated Code-->
+    <insert id="insert">
+        INSERT INTO `article`
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> `id`, </if>
+            <if test="pojo.content != null"> `content`, </if>
+            <if test="pojo.length != null"> `length`, </if>
+            <if test="pojo.createTime != null"> `create_time`, </if>
+            <if test="pojo.updateTime != null"> `update_time`, </if>
+            <if test="pojo.hasMore != null"> `has_more`, </if>
+            <if test="pojo.priority != null"> `priority`, </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.id != null"> #{pojo.id}, </if>
+            <if test="pojo.content != null"> #{pojo.content}, </if>
+            <if test="pojo.length != null"> #{pojo.length}, </if>
+            <if test="pojo.createTime != null"> #{pojo.createTime}, </if>
+            <if test="pojo.updateTime != null"> #{pojo.updateTime}, </if>
+            <if test="pojo.hasMore != null"> #{pojo.hasMore}, </if>
+            <if test="pojo.priority != null"> #{pojo.priority}, </if>
+        </trim>
+    </insert>
+
+<!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO `article`(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.content},
+            #{pojo.length},
+            #{pojo.createTime},
+            #{pojo.updateTime},
+            #{pojo.hasMore},
+            #{pojo.priority}
+            )
+        </foreach>
+    </insert>
+
+<!--auto generated Code-->
+    <update id="update">
+        UPDATE `article`
+        <set>
+            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
+            <if test="pojo.content != null"> `content` = #{pojo.content}, </if>
+            <if test="pojo.length != null"> `length` = #{pojo.length}, </if>
+            <if test="pojo.createTime != null"> `create_time` = #{pojo.createTime}, </if>
+            <if test="pojo.updateTime != null"> `update_time` = #{pojo.updateTime}, </if>
+            <if test="pojo.hasMore != null"> `has_more` = #{pojo.hasMore}, </if>
+            <if test="pojo.priority != null"> `priority` = #{pojo.priority} </if>
+        </set>
+         WHERE `id` = #{pojo.id}
+    </update>
+
+</mapper>

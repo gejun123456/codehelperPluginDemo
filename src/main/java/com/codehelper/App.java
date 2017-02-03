@@ -1,6 +1,7 @@
 package com.codehelper;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,19 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan
 public class App {
+
+    @Value("${db.url}")
+    private String dbUrl;
+
+
+    @Value("${db.username}")
+    private String dbUserName;
+
+
+    @Value("${db.password}")
+    private String dbPassword;
+
+
     @RequestMapping("/")
     String home() {
         return "hello world";
@@ -35,9 +49,9 @@ public class App {
     @Bean(initMethod = "init")
     public DataSource dataSource() {
         DruidDataSource source = new DruidDataSource();
-        source.setUsername("root");
-        source.setPassword("");
-        source.setUrl("jdbc:mysql://localhost/world?serverTimezone=GMT%2b8");
+        source.setUsername(dbUserName);
+        source.setPassword(dbPassword);
+        source.setUrl(dbUrl);
         return source;
     }
 
