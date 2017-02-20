@@ -40,5 +40,18 @@ public interface MyUserDao {
 
     List<MyUser> findByIdBetween(@Param("minId")Integer minId,@Param("maxId")Integer maxId);
 
+
+    List<String> findDistinctUserName();
+
+
+    List<Integer> findIdOrderByUserName();
+
+    List<String> findUserNameOrderByGlobalId();
+
+
+    List<String> findUserNameOrderByGlobalIdDesc();
+
+    List<String> findDistinctUserNameOrderByGlobalIdDesc();
+
     Integer count();
 }

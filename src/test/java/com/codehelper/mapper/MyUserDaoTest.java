@@ -132,7 +132,21 @@ public class MyUserDaoTest extends BaseTest {
 
     @Test
     public void testDistinct() {
-
+        for (int i = 0; i < 2; i++) {
+            MyUser myUser = new MyUser();
+            myUser.setGlobalId(0l);
+            myUser.setCookie(COOKIE);
+            myUser.setType(0);
+            myUser.setUserName(NAME);
+            myUser.setPassword(PASSWORD);
+            myUser.setAge(START_AGE);
+            myUser.setRemainingAmount(new BigDecimal(0));
+            myUser.setAddTime(new Date());
+            myUser.setSerialId(0l);
+            myUserDao.insert(myUser);
+        }
+        Assertions.assertThat(myUserDao.count()).isEqualTo(2);
+        Assertions.assertThat(myUserDao.findDistinctUserName().size()).isEqualTo(1);
     }
 
     @Test
