@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.codehelper.mapper.MyUserDao">
-
-<!--auto generated Code-->
+    <!--auto generated Code-->
     <resultMap id="AllColumnMap" type="com.codehelper.domain.MyUser">
         <result column="id" property="id"/>
         <result column="cookie" property="cookie"/>
@@ -16,7 +15,7 @@
         <result column="global_id" property="globalId"/>
     </resultMap>
 
-<!--auto generated Code-->
+    <!--auto generated Code-->
     <sql id="all_column">
         `id`,
         `cookie`,
@@ -30,39 +29,47 @@
         `global_id`
     </sql>
 
-<!--auto generated Code-->
+    <!--auto generated Code-->
     <insert id="insert">
-        INSERT INTO `my_user`
+        INSERT INTO my_user
+        (`id`,`cookie`,`type`,`user_name`,`password`,`age`,`remaining_amount`,`add_time`,`serial_id`,`global_id`)
+        VALUES
+        (#{pojo.id},#{pojo.cookie},#{pojo.type},#{pojo.userName},#{pojo.password},#{pojo.age},#{pojo.remainingAmount},#{pojo.addTime},#{pojo.serialId},#{pojo.globalId})
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective">
+        INSERT INTO my_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pojo.id != null"> `id`, </if>
-            <if test="pojo.cookie != null"> `cookie`, </if>
-            <if test="pojo.type != null"> `type`, </if>
-            <if test="pojo.userName != null"> `user_name`, </if>
-            <if test="pojo.password != null"> `password`, </if>
-            <if test="pojo.age != null"> `age`, </if>
-            <if test="pojo.remainingAmount != null"> `remaining_amount`, </if>
-            <if test="pojo.addTime != null"> `add_time`, </if>
-            <if test="pojo.serialId != null"> `serial_id`, </if>
-            <if test="pojo.globalId != null"> `global_id`, </if>
+                <if test="pojo.id!=null"> `id`,</if>
+                <if test="pojo.cookie!=null"> `cookie`,</if>
+                <if test="pojo.type!=null"> `type`,</if>
+                <if test="pojo.userName!=null"> `user_name`,</if>
+                <if test="pojo.password!=null"> `password`,</if>
+                <if test="pojo.age!=null"> `age`,</if>
+                <if test="pojo.remainingAmount!=null"> `remaining_amount`,</if>
+                <if test="pojo.addTime!=null"> `add_time`,</if>
+                <if test="pojo.serialId!=null"> `serial_id`,</if>
+                <if test="pojo.globalId!=null"> `global_id`</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pojo.id != null"> #{pojo.id}, </if>
-            <if test="pojo.cookie != null"> #{pojo.cookie}, </if>
-            <if test="pojo.type != null"> #{pojo.type}, </if>
-            <if test="pojo.userName != null"> #{pojo.userName}, </if>
-            <if test="pojo.password != null"> #{pojo.password}, </if>
-            <if test="pojo.age != null"> #{pojo.age}, </if>
-            <if test="pojo.remainingAmount != null"> #{pojo.remainingAmount}, </if>
-            <if test="pojo.addTime != null"> #{pojo.addTime}, </if>
-            <if test="pojo.serialId != null"> #{pojo.serialId}, </if>
-            <if test="pojo.globalId != null"> #{pojo.globalId}, </if>
+                <if test="pojo.id!=null"> #{pojo.id},</if>
+                <if test="pojo.cookie!=null"> #{pojo.cookie},</if>
+                <if test="pojo.type!=null"> #{pojo.type},</if>
+                <if test="pojo.userName!=null"> #{pojo.userName},</if>
+                <if test="pojo.password!=null"> #{pojo.password},</if>
+                <if test="pojo.age!=null"> #{pojo.age},</if>
+                <if test="pojo.remainingAmount!=null"> #{pojo.remainingAmount},</if>
+                <if test="pojo.addTime!=null"> #{pojo.addTime},</if>
+                <if test="pojo.serialId!=null"> #{pojo.serialId},</if>
+                <if test="pojo.globalId!=null"> #{pojo.globalId}</if>
         </trim>
     </insert>
 
-<!--auto generated Code-->
+    <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO `my_user`(
+        INSERT INTO my_user (
         <include refid="all_column"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
@@ -75,167 +82,129 @@
             #{pojo.age},
             #{pojo.remainingAmount},
             #{pojo.addTime},
-            #{pojo.serialId}
+            #{pojo.serialId},
             #{pojo.globalId}
             )
         </foreach>
     </insert>
 
-<!--auto generated Code-->
+    <!--auto generated Code-->
     <update id="update">
-        UPDATE `my_user`
+        UPDATE my_user
         <set>
-            <if test="pojo.id != null"> `id` = #{pojo.id}, </if>
-            <if test="pojo.cookie != null"> `cookie` = #{pojo.cookie}, </if>
-            <if test="pojo.type != null"> `type` = #{pojo.type}, </if>
-            <if test="pojo.userName != null"> `user_name` = #{pojo.userName}, </if>
-            <if test="pojo.password != null"> `password` = #{pojo.password}, </if>
-            <if test="pojo.age != null"> `age` = #{pojo.age}, </if>
-            <if test="pojo.remainingAmount != null"> `remaining_amount` = #{pojo.remainingAmount}, </if>
-            <if test="pojo.addTime != null"> `add_time` = #{pojo.addTime}, </if>
-            <if test="pojo.serialId != null"> `serial_id` = #{pojo.serialId}, </if>
-            <if test="pojo.globalId != null"> `global_id` = #{pojo.globalId} </if>
+            <if test="pojo.id != null"> id = #{pojo.id},</if>
+            <if test="pojo.cookie != null"> cookie = #{pojo.cookie},</if>
+            <if test="pojo.type != null"> type = #{pojo.type},</if>
+            <if test="pojo.userName != null"> user_name = #{pojo.userName},</if>
+            <if test="pojo.password != null"> password = #{pojo.password},</if>
+            <if test="pojo.age != null"> age = #{pojo.age},</if>
+            <if test="pojo.remainingAmount != null"> remaining_amount = #{pojo.remainingAmount},</if>
+            <if test="pojo.addTime != null"> add_time = #{pojo.addTime},</if>
+            <if test="pojo.serialId != null"> serial_id = #{pojo.serialId},</if>
+            <if test="pojo.globalId != null"> global_id = #{pojo.globalId}</if>
         </set>
-         WHERE id = #{pojo.id}
+        WHERE `id` = #{pojo.id}
     </update>
-    <select id="findByIdLikeAndSerialIdIn" resultMap="AllColumnMap">
+
+<!--auto generated by codehelper on 2017-02-20 16:15:02-->
+    <delete id="delete">
+        delete from my_user
+    </delete>
+
+<!--auto generated by codehelper on 2017-02-20 16:15:13-->
+    <select id="findById" resultMap="AllColumnMap">
         select
         <include refid="all_column"/>
-        from `my_user`
-        where `id`like #{likeId} and `serial_id` in
-        <foreach item="item" index="index" collection="serialIdList"
-                 open="(" separator="," close=")">
-            #{item}
-        </foreach>
-    </select>
-
-    <delete id="deleteById">
-        delete from `my_user`
+        from my_user
         where `id`=#{id}
-    </delete>
-
-    <select id="findDistinctUserNameByIdBetween" resultType="java.lang.String">
-        select distinct( `user_name`)
-        from `my_user`
-        where `id`<![CDATA[>=]]> #{minId} and `id` <![CDATA[<=]]> #{maxId}
     </select>
 
-    <delete id="deleteByUserNameAndAddTime">
-        delete from `my_user`
-        where `user_name`=#{userName} and `add_time`=#{addTime}
-    </delete>
-    <select id="findUserNameAndPasswordByIdGreaterThan" resultMap="AllColumnMap">
-        select `user_name`, `password`
-        from `my_user`
-        where `id`<![CDATA[>]]> #{minId}
+<!--auto generated by codehelper on 2017-02-20 16:15:18-->
+
+    <!--auto generated by codehelper on 2017-02-20 16:15:26-->
+
+    <!--auto generated by codehelper on 2017-02-20 16:15:48-->
+
+    <!--auto generated by codehelper on 2017-02-20 16:15:57-->
+
+    <!--auto generated by codehelper on 2017-02-20 16:16:05-->
+
+    <!--auto generated by codehelper on 2017-02-20 16:30:41-->
+
+    <!--auto generated by codehelper on 2017-02-20 16:42:56-->
+    <select id="findAgeById" resultType="java.lang.Integer">
+        select `age`
+        from my_user
+        where `id`=#{id}
     </select>
+
+<!--auto generated by codehelper on 2017-02-20 16:43:02-->
     <select id="findByUserName" resultMap="AllColumnMap">
         select
         <include refid="all_column"/>
-        from `my_user`
+        from my_user
         where `user_name`=#{userName}
     </select>
-    <select id="findFirstByUserName" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `user_name`=#{userName} limit 1
-    </select>
-    <select id="findUserNameAndPasswordByIdBetween" resultMap="AllColumnMap">
-        select `user_name`, `password`
-        from `my_user`
-        where `id`<![CDATA[>=]]> #{minId} and `id` <![CDATA[<=]]> #{maxId}
-    </select>
-    <select id="findByIdGreaterThan" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `id`<![CDATA[>]]> #{minId}
-    </select>
-    <select id="findByIdLessThan" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `id`<![CDATA[<]]> #{maxId}
-    </select>
-    <select id="findDistinctUserNameByIdIn" resultType="java.lang.String">
-        select distinct( `user_name`)
-        from `my_user`
-        where `id` in
-        <foreach item="item" index="index" collection="idList"
-                 open="(" separator="," close=")">
-            #{item}
-        </foreach>
-    </select>
-    <select id="findByAgeGreaterThanAndIdLessThan" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `age`<![CDATA[>]]> #{minAge} and `id`<![CDATA[<]]> #{maxId}
-    </select>
-    <select id="findByAgeOrderByUserNameDesc" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `age`=#{age} order by `user_name` desc
-    </select>
+
+<!--auto generated by codehelper on 2017-02-20 16:43:06-->
     <select id="countByIdBetween" resultType="java.lang.Integer">
         select count(1)
-        from `my_user`
+        from my_user
+        where `id`<![CDATA[>]]> #{minId} and `id` <![CDATA[<]]> #{maxId}
+    </select>
+
+<!--auto generated by codehelper on 2017-02-20 16:43:13-->
+    <select id="findByIdGreaterThanOrEqualTo" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from my_user
+        where `id`<![CDATA[>=]]> #{minId}
+    </select>
+
+<!--auto generated by codehelper on 2017-02-20 16:43:18-->
+    <select id="findByIdLessThanOrEqualTo" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from my_user
+        where `id`<![CDATA[<=]]> #{maxId}
+    </select>
+
+<!--auto generated by codehelper on 2017-02-20 16:43:22-->
+    <select id="findByIdBetweenOrEqualTo" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from my_user
         where `id`<![CDATA[>=]]> #{minId} and `id` <![CDATA[<=]]> #{maxId}
     </select>
-    <update id="updateUserNameAndPasswordByIdBetween">
-        update `my_user`
-        set `user_name`=#{updatedUserName}, `password`=#{updatedPassword}
-        where `id`<![CDATA[>=]]> #{minId} and `id` <![CDATA[<=]]> #{maxId}
-    </update>
+
+<!--auto generated by codehelper on 2017-02-20 16:43:25-->
+    <select id="count" resultType="java.lang.Integer">
+        select count(1)
+        from my_user
+    </select>
+
+<!--auto generated by codehelper on 2017-02-20 16:57:09-->
+    <select id="find" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from my_user
+    </select>
+
+<!--auto generated by codehelper on 2017-02-20 17:36:33-->
+    <select id="findByIdBetween" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from my_user
+        where `id`<![CDATA[>]]> #{minId} and `id` <![CDATA[<]]> #{maxId}
+    </select>
+
+<!--auto generated by codehelper on 2017-02-20 17:43:55-->
     <update id="updateUserNameById">
-        update `my_user`
+        update my_user
         set `user_name`=#{updatedUserName}
         where `id`=#{id}
     </update>
-    <delete id="deleteByIdBetween">
-        delete from `my_user`
-        where `id`<![CDATA[>=]]> #{minId} and `id` <![CDATA[<=]]> #{maxId}
-    </delete>
-    <select id="countDistinctUserNameByAgeLessThan" resultType="java.lang.Integer">
-        select count(distinct(`user_name`))
-        from `my_user`
-        where `age`<![CDATA[<]]> #{maxAge}
-    </select>
-    <select id="findByRemainingAmountGreaterThan" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `remaining_amount`<![CDATA[>]]> #{minRemainingAmount}
-    </select>
-    <select id="findByIdInAndUserNameIn" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `id` in
-        <foreach item="item" index="index" collection="idList"
-                 open="(" separator="," close=")">
-            #{item}
-        </foreach>
-        and `user_name` in
-        <foreach item="item" index="index" collection="userNameList"
-                 open="(" separator="," close=")">
-            #{item}
-        </foreach>
-    </select>
-    <select id="findFirstByIdGreaterThan" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `id`<![CDATA[>]]> #{minId} limit 1
-    </select>
-    <select id="findFirst100ByIdGreaterThan" resultMap="AllColumnMap">
-        select
-        <include refid="all_column"/>
-        from `my_user`
-        where `id`<![CDATA[>]]> #{minId} limit 100
-    </select>
 
-
+    <!--auto generated by codehelper on 2017-02-20 16:36:19-->
 </mapper>
+

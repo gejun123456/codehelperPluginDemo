@@ -1,0 +1,13 @@
+insert
+insertSelective
+insertList
+update
+delete
+findById
+findAgeById
+findByUserName
+countByIdBetween
+findByIdGreaterThanOrEqualTo
+findByIdLessThanOrEqualTo
+findByIdBetweenOrEqualTo
+count

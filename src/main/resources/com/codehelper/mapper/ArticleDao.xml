@@ -14,7 +14,7 @@
     </resultMap>
 
 <!--auto generated Code-->
-    <sql id="all_column">
+    <sql id="nimeiyalaji">
         `id`,
         `content`,
         `length`,
@@ -25,7 +25,7 @@
     </sql>
 
 <!--auto generated Code-->
-    <insert id="insert">
+    <insert id="nima">
         INSERT INTO `article`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id != null"> `id`, </if>
@@ -51,7 +51,7 @@
 <!--auto generated Code-->
     <insert id="insertList">
         INSERT INTO `article`(
-        <include refid="all_column"/>
+        <include refid="nimeiyalaji"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
             (
@@ -67,7 +67,7 @@
     </insert>
 
 <!--auto generated Code-->
-    <update id="update">
+    <update id="updateHehe">
         UPDATE `article`
         <set>
             <if test="pojo.id != null"> `id` = #{pojo.id}, </if>

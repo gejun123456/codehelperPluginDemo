@@ -2,131 +2,155 @@ package com.codehelper.mapper;
 
 import base.BaseTest;
 import com.codehelper.domain.MyUser;
-import junit.framework.TestCase;
+import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Lists;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by bruce.ge on 2016/12/15.
  */
 public class MyUserDaoTest extends BaseTest {
 
+    public static final String COOKIE = "cookie";
+    public static final String NAME = "name";
+    public static final String PASSWORD = "password";
     @Autowired
     private MyUserDao myUserDao;
 
-    @Test
-    public void testInsert() throws Exception {
-        Calendar cal = Calendar.getInstance();
+    public static final int START_AGE = 30;
+
+    @Before
+    public void before() {
+        myUserDao.delete();
+    }
+
+    private void insertList() {
+        List<MyUser> users = Lists.newArrayList();
         for (int i = 0; i < 10; i++) {
-            MyUser user = new MyUser();
-            user.setUserName("bruce" + i);
-            user.setPassword("pass" + i);
-            cal.add(Calendar.DAY_OF_YEAR, -1);
-            user.setAddTime(cal.getTime());
-            user.setAge(i);
-            user.setCookie("ejrwwlsswww" + i);
-            user.setRemainingAmount(new BigDecimal("100.33").add(new BigDecimal(i)));
-            user.setSerialId(1111111111111111111l + i);
-            user.setType(i);
-            myUserDao.insert(user);
+            MyUser myUser = new MyUser();
+            myUser.setGlobalId(Long.valueOf(i));
+            myUser.setCookie(COOKIE + i);
+            myUser.setType(i);
+            myUser.setUserName(NAME + i);
+            myUser.setPassword(PASSWORD + i);
+            myUser.setAge(START_AGE + i);
+            myUser.setRemainingAmount(new BigDecimal(i));
+            myUser.setAddTime(new Date());
+            myUser.setSerialId(Long.valueOf(i));
+            users.add(myUser);
         }
+        myUserDao.insertList(users);
+    }
+
+    private void insertOneRecord() {
+        MyUser myUser = new MyUser();
+        myUser.setGlobalId(0l);
+        myUser.setCookie(COOKIE);
+        myUser.setType(0);
+        myUser.setUserName(NAME);
+        myUser.setPassword(PASSWORD);
+        myUser.setAge(START_AGE);
+        myUser.setRemainingAmount(new BigDecimal(0));
+        myUser.setAddTime(new Date());
+        myUser.setSerialId(0l);
+        myUserDao.insert(myUser);
+    }
+
+    @Test
+    public void testInsert() {
+        for (int i = 0; i < 10; i++) {
+            MyUser myUser = new MyUser();
+            myUser.setGlobalId(0L + i);
+            myUser.setCookie("cookie" + i);
+            myUser.setType(i);
+            myUser.setUserName("naem" + i);
+            myUser.setPassword("password" + i);
+            myUser.setAge(30 + i);
+            myUser.setRemainingAmount(new BigDecimal(i));
+            myUser.setAddTime(new Date());
+            myUser.setSerialId(Long.valueOf(i));
+            myUserDao.insert(myUser);
+        }
+        Assertions.assertThat(myUserDao.count()).isEqualTo(10);
+    }
+
+    @Test
+    public void testInsertSelective() {
+        MyUser myUser = new MyUser();
+        myUser.setGlobalId(0L);
+        myUser.setRemainingAmount(new BigDecimal("0"));
+        myUser.setAddTime(new Date());
+        myUser.setSerialId(0L);
+        myUserDao.insertSelective(myUser);
+        Assertions.assertThat(myUserDao.count()).isEqualTo(1);
+    }
+
+    @Test
+    public void testInsertList() {
+        insertList();
+        Assertions.assertThat(myUserDao.count()).isEqualTo(10);
     }
 
     @Test
     public void testFind() {
-        System.out.println("findByUserName");
-        List<MyUser> bruce0 =
-                myUserDao.findByUserName("bruce0");
-        printToJson(bruce0);
-
-
-        System.out.println("findFirstByUserName");
-        MyUser bruce01 = myUserDao.findFirstByUserName("bruce0");
-        printToJson(bruce01);
-
-        System.out.println("findUserNameAndPassWordByIdBetween");
-        List<MyUser> userNameAndPasswordByIdBetween = myUserDao.findUserNameAndPasswordByIdBetween(1, 3);
-        printToJson(userNameAndPasswordByIdBetween);
-
-        System.out.println("findByIdGreaterThan");
-        List<MyUser> byIdGreaterThan = myUserDao.findByIdGreaterThan(9);
-        printToJson(byIdGreaterThan);
-
-        System.out.println("findByIdLessThan");
-        List<MyUser> byIdLessThan = myUserDao.findByIdLessThan(2);
-        printToJson(byIdLessThan);
-
-        System.out.println("findDistinctUserNameIn");
-        List<Integer> ids = new ArrayList<Integer>();
-        ids.add(6);
-        ids.add(7);
-        ids.add(8);
-        List<String> distinctUserNameByIdIn = myUserDao.findDistinctUserNameByIdIn(ids);
-        printToJson(distinctUserNameByIdIn);
-
-        System.out.println("findByAgeGreaterThanAndIdLessThan");
-        List<MyUser> byAgeGreaterThanAndIdLessThan = myUserDao.findByAgeGreaterThanAndIdLessThan(3, 6);
-        printToJson(byAgeGreaterThanAndIdLessThan);
-
-        System.out.println("findByAgeOrderByUserNameDesc");
-        List<MyUser> byAgeOrderByUserNameDesc = myUserDao.findByAgeOrderByUserNameDesc(3);
-        printToJson(byAgeOrderByUserNameDesc);
-
-
-        System.out.println("findByIdINAndUserNameIN");
-        List<Integer> idss = new ArrayList<Integer>();
-        idss.add(7);
-        idss.add(8);
-        idss.add(9);
-        idss.add(10);
-        List<String> usernames = new ArrayList<String>();
-        usernames.add("username");
-        List<MyUser> byIdInAndUserNameIn = myUserDao.findByIdInAndUserNameIn(idss, usernames);
-        printToJson(byIdInAndUserNameIn);
-
+        insertList();
+        List<MyUser> users = myUserDao.find();
+        Assertions.assertThat(users.size()).isEqualTo(10);
+        for (MyUser user : users) {
+            MyUser byId = myUserDao.findById(user.getId());
+            Assertions.assertThat(byId).isNotNull();
+        }
+        List<MyUser> collect = users.stream().sorted(Comparator.comparing(MyUser::getId)).collect(Collectors.toList());
+        Integer minId = collect.get(0).getId();
+        Assertions.assertThat(myUserDao.findAgeById(minId)).isEqualTo(START_AGE);
+        Assertions.assertThat(myUserDao.findByIdBetweenOrEqualTo(minId + 2, minId + 3).size()).isEqualTo(2);
+        Assertions.assertThat(myUserDao.findByIdBetween(minId + 2, minId + 3).size()).isEqualTo(0);
+        Assertions.assertThat(myUserDao.findByIdGreaterThanOrEqualTo(minId + 8).size()).isEqualTo(2);
+        Assertions.assertThat(myUserDao.findByIdLessThanOrEqualTo(minId + 2).size()).isEqualTo(3);
     }
 
-    public void testInsertList() throws Exception {
+    @Test
+    public void testUpdate() {
+        insertOneRecord();
+        List<MyUser> users = myUserDao.find();
+        Assertions.assertThat(users.size()).isEqualTo(1);
+        MyUser myUser = users.get(0);
+        Integer oldId = myUser.getId();
+        int i = myUserDao.updateUserNameById("newUserName", oldId);
+        Assertions.assertThat(i).isEqualTo(1);
+        Assertions.assertThat(myUserDao.find().get(0).getUserName()).isEqualTo("newUserName");
+    }
+
+    @Test
+    public void testDistinct() {
 
     }
 
     @Test
-    public void testUpdate() throws Exception {
-        System.out.println("updateUserNameById");
-        int aaaa = myUserDao.updateUserNameById("aaaa", 1);
-        System.out.println(aaaa);
+    public void testOrderBy() {
 
-        System.out.println("updateUserNameAndPasswordByIdBetween");
-        int i = myUserDao.updateUserNameAndPasswordByIdBetween("username", "password", 7, 8);
-        System.out.println(i);
-    }
-
-    @Test
-    public void testDelete() {
-        System.out.println("deleteById");
-        int i = myUserDao.deleteById(1);
-        System.out.println(i);
-
-        System.out.println("deleteByIdBetween");
-        int i1 = myUserDao.deleteByIdBetween(1, 3);
-        System.out.println(i1);
     }
 
 
     @Test
     public void testCount() {
-        System.out.println("countByIdBetween");
-        Integer integer = myUserDao.countByIdBetween(1, 6);
-        System.out.println(integer);
 
-        System.out.println("countDistinctUserNamesByAgeLessThan");
-        Integer i = myUserDao.countDistinctUserNameByAgeLessThan(8);
-        System.out.println(i);
     }
+
+
+    @After
+    public void after() {
+//        myUserDao.delete();
+    }
+
+
 }
