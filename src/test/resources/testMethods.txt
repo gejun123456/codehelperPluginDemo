@@ -11,3 +11,9 @@ findByIdGreaterThanOrEqualTo
 findByIdLessThanOrEqualTo
 findByIdBetweenOrEqualTo
 count
+findDistinctUserName
+findDistinctUserNameOrderByGlobalIdDesc
+countByIdBetween
+find
+updateUserNameById
+findByIdBetween
