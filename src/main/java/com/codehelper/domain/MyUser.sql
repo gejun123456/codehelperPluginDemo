@@ -1,4 +1,4 @@
--- auto Generated on 2017-02-28 15:57:31 
+-- auto Generated on 2017-02-28 16:06:36 
 -- DROP TABLE IF EXISTS `my_user`; 
 CREATE TABLE `my_user`(
     `id` INT (11) NOT NULL AUTO_INCREMENT COMMENT 'id',

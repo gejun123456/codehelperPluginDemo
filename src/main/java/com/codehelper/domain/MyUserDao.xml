@@ -31,31 +31,28 @@
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO my_user
-        (
-        `id`,
-        `cookie`,
-        `type`,
-        `user_name`,
-        `password`,
-        `age`,
-        `remaining_amount`,
-        `add_time`,
-        `serial_id`,
-        `global_id`
-        )
-        VALUES
-        (
-        #{pojo.id},
-        #{pojo.cookie},
-        #{pojo.type},
-        #{pojo.userName},
-        #{pojo.password},
-        #{pojo.age},
-        #{pojo.remainingAmount},
-        #{pojo.addTime},
-        #{pojo.serialId},
-        #{pojo.globalId}
+        INSERT INTO my_user (
+            `id`,
+            `cookie`,
+            `type`,
+            `user_name`,
+            `password`,
+            `age`,
+            `remaining_amount`,
+            `add_time`,
+            `serial_id`,
+            `global_id`
+        ) VALUES (
+            #{pojo.id},
+            #{pojo.cookie},
+            #{pojo.type},
+            #{pojo.userName},
+            #{pojo.password},
+            #{pojo.age},
+            #{pojo.remainingAmount},
+            #{pojo.addTime},
+            #{pojo.serialId},
+            #{pojo.globalId}
         )
     </insert>
 
@@ -63,16 +60,16 @@
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
         INSERT INTO my_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
-                <if test="pojo.id!=null"> `id`,</if>
-                <if test="pojo.cookie!=null"> `cookie`,</if>
-                <if test="pojo.type!=null"> `type`,</if>
-                <if test="pojo.userName!=null"> `user_name`,</if>
-                <if test="pojo.password!=null"> `password`,</if>
-                <if test="pojo.age!=null"> `age`,</if>
-                <if test="pojo.remainingAmount!=null"> `remaining_amount`,</if>
-                <if test="pojo.addTime!=null"> `add_time`,</if>
-                <if test="pojo.serialId!=null"> `serial_id`,</if>
-                <if test="pojo.globalId!=null"> `global_id`</if>
+            <if test="pojo.id!=null"> `id`,</if>
+            <if test="pojo.cookie!=null"> `cookie`,</if>
+            <if test="pojo.type!=null"> `type`,</if>
+            <if test="pojo.userName!=null"> `user_name`,</if>
+            <if test="pojo.password!=null"> `password`,</if>
+            <if test="pojo.age!=null"> `age`,</if>
+            <if test="pojo.remainingAmount!=null"> `remaining_amount`,</if>
+            <if test="pojo.addTime!=null"> `add_time`,</if>
+            <if test="pojo.serialId!=null"> `serial_id`,</if>
+            <if test="pojo.globalId!=null"> `global_id`</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
