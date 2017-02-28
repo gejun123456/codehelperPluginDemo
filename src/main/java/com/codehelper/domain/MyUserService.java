@@ -1,11 +1,10 @@
-package com.codehelper.service;
+package com.codehelper.domain;
 
-import com.codehelper.domain.MyUser;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
-
-import com.codehelper.mapper.MyUserDao;
+import com.codehelper.domain.MyUser;
+import com.codehelper.domain.MyUserDao;
 
 @Service
 public class MyUserService{

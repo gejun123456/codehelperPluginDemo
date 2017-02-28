@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.codehelper.domain.MyUserDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.codehelper.domain.MyUser">
+        <result column="id" property="id"/>
+        <result column="cookie" property="cookie"/>
+        <result column="type" property="type"/>
+        <result column="user_name" property="userName"/>
+        <result column="password" property="password"/>
+        <result column="age" property="age"/>
+        <result column="remaining_amount" property="remainingAmount"/>
+        <result column="add_time" property="addTime"/>
+        <result column="serial_id" property="serialId"/>
+        <result column="global_id" property="globalId"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `id`,
+        `cookie`,
+        `type`,
+        `user_name`,
+        `password`,
+        `age`,
+        `remaining_amount`,
+        `add_time`,
+        `serial_id`,
+        `global_id`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO my_user
+        (
+        `id`,
+        `cookie`,
+        `type`,
+        `user_name`,
+        `password`,
+        `age`,
+        `remaining_amount`,
+        `add_time`,
+        `serial_id`,
+        `global_id`
+        )
+        VALUES
+        (
+        #{pojo.id},
+        #{pojo.cookie},
+        #{pojo.type},
+        #{pojo.userName},
+        #{pojo.password},
+        #{pojo.age},
+        #{pojo.remainingAmount},
+        #{pojo.addTime},
+        #{pojo.serialId},
+        #{pojo.globalId}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
+        INSERT INTO my_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="pojo.id!=null"> `id`,</if>
+                <if test="pojo.cookie!=null"> `cookie`,</if>
+                <if test="pojo.type!=null"> `type`,</if>
+                <if test="pojo.userName!=null"> `user_name`,</if>
+                <if test="pojo.password!=null"> `password`,</if>
+                <if test="pojo.age!=null"> `age`,</if>
+                <if test="pojo.remainingAmount!=null"> `remaining_amount`,</if>
+                <if test="pojo.addTime!=null"> `add_time`,</if>
+                <if test="pojo.serialId!=null"> `serial_id`,</if>
+                <if test="pojo.globalId!=null"> `global_id`</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="pojo.id!=null"> #{pojo.id},</if>
+                <if test="pojo.cookie!=null"> #{pojo.cookie},</if>
+                <if test="pojo.type!=null"> #{pojo.type},</if>
+                <if test="pojo.userName!=null"> #{pojo.userName},</if>
+                <if test="pojo.password!=null"> #{pojo.password},</if>
+                <if test="pojo.age!=null"> #{pojo.age},</if>
+                <if test="pojo.remainingAmount!=null"> #{pojo.remainingAmount},</if>
+                <if test="pojo.addTime!=null"> #{pojo.addTime},</if>
+                <if test="pojo.serialId!=null"> #{pojo.serialId},</if>
+                <if test="pojo.globalId!=null"> #{pojo.globalId}</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO my_user (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.id},
+            #{pojo.cookie},
+            #{pojo.type},
+            #{pojo.userName},
+            #{pojo.password},
+            #{pojo.age},
+            #{pojo.remainingAmount},
+            #{pojo.addTime},
+            #{pojo.serialId},
+            #{pojo.globalId}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE my_user
+        <set>
+            <if test="pojo.id != null"> `id` = #{pojo.id},</if>
+            <if test="pojo.cookie != null"> `cookie` = #{pojo.cookie},</if>
+            <if test="pojo.type != null"> `type` = #{pojo.type},</if>
+            <if test="pojo.userName != null"> `user_name` = #{pojo.userName},</if>
+            <if test="pojo.password != null"> `password` = #{pojo.password},</if>
+            <if test="pojo.age != null"> `age` = #{pojo.age},</if>
+            <if test="pojo.remainingAmount != null"> `remaining_amount` = #{pojo.remainingAmount},</if>
+            <if test="pojo.addTime != null"> `add_time` = #{pojo.addTime},</if>
+            <if test="pojo.serialId != null"> `serial_id` = #{pojo.serialId},</if>
+            <if test="pojo.globalId != null"> `global_id` = #{pojo.globalId}</if>
+        </set>
+        WHERE id = #{pojo.id}
+    </update>
+</mapper>
+
