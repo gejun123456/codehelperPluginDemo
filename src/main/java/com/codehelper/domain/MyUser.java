@@ -27,7 +27,6 @@ public class MyUser {
 
     private Long globalId;
 
-
     public Long getGlobalId() {
         return globalId;
     }
