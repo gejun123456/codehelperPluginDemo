@@ -3,7 +3,7 @@
 <mapper namespace="com.codehelper.mapper.MyUserDao">
     <!--auto generated Code-->
     <resultMap id="AllColumnMap" type="com.codehelper.domain.MyUser">
-        <result column="id" property="id"/>
+        <result id="id" property="id"/>
         <result column="cookie" property="cookie"/>
         <result column="type" property="type"/>
         <result column="user_name" property="userName"/>
