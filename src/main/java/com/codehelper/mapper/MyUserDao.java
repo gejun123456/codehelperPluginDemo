@@ -43,4 +43,7 @@ public interface MyUserDao {
     int updateUserNameById(@Param("updatedUserName")String updatedUserName,@Param("id")Integer id);
             int updateUserNameAndPasswordByIdBetween(@Param("updatedUserName")String updatedUserName,@Param("updatedPassword")String updatedPassword,@Param("minId")Integer minId,@Param("maxId")Integer maxId);
 
+    List<MyUser> findByIdBetweenOrEqualToAndIdLessThan(@Param("minId") Integer minId, @Param("maxId") Integer maxId);
+
+
 }
